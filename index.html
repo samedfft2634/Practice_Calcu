@@ -1,55 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>|| Calculator ||</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-</head>
-<body>
-    
-    <div class="container">
-        <div class="calculator">
-            <form>
-                <div class="display">
-                    <input type="text" name="display">
-                </div>
-                <div>
-                    <input type="button" value="AC" onclick="display.value = '' ">
-                    <input type="button" value="DE" onclick="display.value = display.value.toString().slice(0,-1)">
-                    <input type="button" value="." onclick="display.value += '.' ">
-                    <input type="button" value="/" onclick="display.value += '/' ">
-                </div>
-                <div>
-                    <input type="button" value="7" onclick="display.value += '7' ">
-                    <input type="button" value="8" onclick="display.value += '8' ">
-                    <input type="button" value="9" onclick="display.value += '9' ">
-                    <input type="button" value="*" onclick="display.value += '*' ">
-                </div>
-                <div>
-                    <input type="button" value="4" onclick="display.value += '4' ">
-                    <input type="button" value="5" onclick="display.value += '5' ">
-                    <input type="button" value="6" onclick="display.value += '6' ">
-                    <input type="button" value="-" onclick="display.value += '-' ">
-                </div>
-                <div>
-                    <input type="button" value="1" onclick="display.value += '1' ">
-                    <input type="button" value="2" onclick="display.value += '2' ">
-                    <input type="button" value="3" onclick="display.value += '3' ">
-                    <input type="button" value="+" onclick="display.value += '+' ">
-                </div>
-                <div>
-                    <input type="button" value="00" onclick="display.value += '00' ">
-                    <input type="button" value="0" onclick="display.value += '0' ">
-                    <input type="button" value="=" onclick ="display.value = eval(display.value)" class="equal">
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>|| Calculator ||</title>
+		<link rel="stylesheet" href="./style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="container">
+			<div class="calculator">
+				<form>
+					<div class="display">
+						<input type="text" name="display" class="result" />
+					</div>
+					<div>
+						<input
+							type="button"
+							value="AC"
+							onclick="display.value = '' "
+							class="operator"
+						/>
+						<input
+							type="button"
+							value="DE"
+							onclick="display.value = display.value.toString().slice(0,-1)"
+							class="operator"
+						/>
+						<input
+							type="button"
+							value="."
+							onclick="display.value += '.' "
+							class="operator"
+						/>
+						<input
+							type="button"
+							value="/"
+							onclick="display.value += '/' "
+							class="operator"
+						/>
+					</div>
+					<div>
+						<input
+							type="button"
+							value="7"
+							onclick="display.value += '7' "
+						/>
+						<input
+							type="button"
+							value="8"
+							onclick="display.value += '8' "
+						/>
+						<input
+							type="button"
+							value="9"
+							onclick="display.value += '9' "
+						/>
+						<input
+							type="button"
+							value="*"
+							onclick="display.value += '*' "
+							class="operator"
+						/>
+					</div>
+					<div>
+						<input
+							type="button"
+							value="4"
+							onclick="display.value += '4' "
+						/>
+						<input
+							type="button"
+							value="5"
+							onclick="display.value += '5' "
+						/>
+						<input
+							type="button"
+							value="6"
+							onclick="display.value += '6' "
+						/>
+						<input
+							type="button"
+							value="-"
+							onclick="display.value += '-' "
+							class="operator"
+						/>
+					</div>
+					<div>
+						<input
+							type="button"
+							value="1"
+							onclick="display.value += '1' "
+						/>
+						<input
+							type="button"
+							value="2"
+							onclick="display.value += '2' "
+						/>
+						<input
+							type="button"
+							value="3"
+							onclick="display.value += '3' "
+						/>
+						<input
+							type="button"
+							value="+"
+							onclick="display.value += '+' "
+							class="operator"
+						/>
+					</div>
+					<div>
+						<input
+							type="button"
+							value="00"
+							onclick="display.value += '00' "
+						/>
+						<input
+							type="button"
+							value="0"
+							onclick="display.value += '0' "
+						/>
+						<input
+							type="button"
+							value="="
+							onclick="display.value = eval(display.value)"
+							class="equal operator"
+						/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script>
+			//! Function that will run when the equal button is clicked
+			function changeResultStyles() {
+				var resultInput = document.querySelector(".result");
+				resultInput.style.backgroundColor = "#91ffeb74";
+				resultInput.style.color = "#000";
+				resultInput.style.border = "3px solid #ffae00";
+			}
+
+			//! Call the changeResultStyles function when the equal button is clicked
+			var equalButton = document.querySelector(".equal");
+			equalButton.addEventListener("click", changeResultStyles);
+
+			// Function to run when clicked anywhere on the page
+			document.addEventListener("click", function (event) {
+				var resultInput = document.querySelector(".result");
+				// If the clicked item is not equal button, reset the properties of the result field
+				if (event.target !== equalButton) {
+					resultInput.style.backgroundColor = ""; 
+					resultInput.style.color = ""; 
+					resultInput.style.border = ""; 
+				}
+			});
+		</script>
+	</body>
 </html>
 
 <!-- AC stands for All Clear. AC clears the calculator and resets any functions. This clears the calculator and resets all functions.  -->
